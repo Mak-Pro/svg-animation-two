@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState, useEffect } from "react";
 
 interface Feature {
-  claimNumber: number
-  claimTitle: string
-  claimDescription: string
-  embodimentTitle: string
-  embodimentDescription: string
-  useCase: string
-  image?: string
+  claimNumber: number;
+  claimTitle: string;
+  claimDescription: string;
+  embodimentTitle: string;
+  embodimentDescription: string;
+  useCase: string;
+  image?: string;
 }
 
 export default function FeatureScroll() {
@@ -27,8 +27,7 @@ export default function FeatureScroll() {
       embodimentTitle: "Embodiment 1: Precision Long-Form Invalidity Search",
       embodimentDescription:
         "Our multi-stage search process searches our index of 85+ million patents, finding the key prior art reference around 80% of the time in one go.",
-      useCase:
-        "Find art others miss, faster and more affordably.",
+      useCase: "Find art others miss, faster and more affordably.",
       image: "/images/feature1.png",
     },
     {
@@ -127,7 +126,39 @@ export default function FeatureScroll() {
         "Leverage the power of AI while maintaining human oversight for optimal results.",
       image: "/images/feature8.png",
     },
-  ]
+  ];
+
+  const [featurePlayer, setFeaturePlayer] = useState<any>(null);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "/scripts/spine-player.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      const spine = (window as any).spine;
+
+      // grid animation
+      if (spine) {
+        const gridPlayer = new spine.SpinePlayer("feature-1", {
+          skeleton: "/data/animations/Claim.json",
+          atlas: "/data/animations/Claim.atlas",
+          animation: "animation",
+          showControls: false,
+          showLoading: false,
+          alpha: true,
+          success: (player: any) => {
+            setFeaturePlayer(player);
+          },
+        });
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen snap-y snap-mandatory overflow-y-scroll">
@@ -146,11 +177,10 @@ export default function FeatureScroll() {
               <div className="mt-4 ml-8">
                 b) an AI-native search platform configured to:
                 <div className="ml-8 mt-2">
-                  perform boolean search with custom query language and model-driven query generation,
+                  perform boolean search with custom query language and
+                  model-driven query generation,
                 </div>
-                <div className="ml-8">
-                  apply model-driven ranking, and
-                </div>
+                <div className="ml-8">apply model-driven ranking, and</div>
                 <div className="ml-8">
                   map query components to document components.
                 </div>
@@ -159,17 +189,13 @@ export default function FeatureScroll() {
             <h3 className="text-xl font-semibold text-gray-700 mb-2">
               {features[0].embodimentTitle}
             </h3>
-            <p className="text-gray-600 mb-4">{features[0].embodimentDescription}</p>
+            <p className="text-gray-600 mb-4">
+              {features[0].embodimentDescription}
+            </p>
             <p className="text-gray-700 italic">{features[0].useCase}</p>
           </div>
           <div className="flex items-center justify-center">
-            {features[0].image && (
-              <img
-                src={features[0].image}
-                alt={features[0].embodimentTitle}
-                className="w-full h-auto"
-              />
-            )}
+            <div id="feature-1" className="w-full h-full"></div>
           </div>
         </div>
       </section>
@@ -192,7 +218,9 @@ export default function FeatureScroll() {
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 {feature.embodimentTitle}
               </h3>
-              <p className="text-gray-600 mb-4">{feature.embodimentDescription}</p>
+              <p className="text-gray-600 mb-4">
+                {feature.embodimentDescription}
+              </p>
               <p className="text-gray-700 italic">{feature.useCase}</p>
             </div>
             {/* Right side - Image */}
@@ -209,5 +237,5 @@ export default function FeatureScroll() {
         </section>
       ))}
     </div>
-  )
+  );
 }

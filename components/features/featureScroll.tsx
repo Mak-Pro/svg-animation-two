@@ -197,7 +197,7 @@ export default function FeatureScroll() {
           <div className="flex items-center justify-center">
             <div
               id="feature-1"
-              className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px]"
+              className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px] h-[520px] w-[520px]"
             ></div>
           </div>
         </div>

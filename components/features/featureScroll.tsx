@@ -195,7 +195,10 @@ export default function FeatureScroll() {
             <p className="text-gray-700 italic">{features[0].useCase}</p>
           </div>
           <div className="flex items-center justify-center">
-            <div id="feature-1" className="w-full h-full"></div>
+            <div
+              id="feature-1"
+              className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px]"
+            ></div>
           </div>
         </div>
       </section>

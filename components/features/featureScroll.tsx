@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 interface Feature {
   claimNumber: number;
@@ -128,37 +129,37 @@ export default function FeatureScroll() {
     },
   ];
 
-  const [featurePlayer, setFeaturePlayer] = useState<any>(null);
+  // const [featurePlayer, setFeaturePlayer] = useState<any>(null);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "/scripts/spine-player.js";
-    script.async = true;
-    document.body.appendChild(script);
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "/scripts/spine-player.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
 
-    script.onload = () => {
-      const spine = (window as any).spine;
+  //   script.onload = () => {
+  //     const spine = (window as any).spine;
 
-      // grid animation
-      if (spine) {
-        const gridPlayer = new spine.SpinePlayer("feature-1", {
-          skeleton: "/data/animations/Claim.json",
-          atlas: "/data/animations/Claim.atlas",
-          animation: "animation",
-          showControls: false,
-          showLoading: false,
-          alpha: true,
-          success: (player: any) => {
-            setFeaturePlayer(player);
-          },
-        });
-      }
-    };
+  //     // grid animation
+  //     if (spine) {
+  //       const gridPlayer = new spine.SpinePlayer("feature-1", {
+  //         skeleton: "/data/animations/Claim.json",
+  //         atlas: "/data/animations/Claim.atlas",
+  //         animation: "animation",
+  //         showControls: false,
+  //         showLoading: false,
+  //         alpha: true,
+  //         success: (player: any) => {
+  //           setFeaturePlayer(player);
+  //         },
+  //       });
+  //     }
+  //   };
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <div className="min-h-screen snap-y snap-mandatory overflow-y-scroll">
@@ -195,10 +196,14 @@ export default function FeatureScroll() {
             <p className="text-gray-700 italic">{features[0].useCase}</p>
           </div>
           <div className="flex items-center justify-center">
-            <div
-              id="feature-1"
-              className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px] h-[520px] w-[520px]"
-            ></div>
+            <div className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px] h-[520px] w-[520px] [&>*]:h-[100%]">
+              <Player
+                autoplay
+                loop
+                src="/data/animations/scene1.json"
+                style={{ height: "100%", width: "100%" }}
+              ></Player>
+            </div>
           </div>
         </div>
       </section>

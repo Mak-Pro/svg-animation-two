@@ -12,7 +12,6 @@ interface Feature {
   useCase: string;
   image?: string;
 }
-
 export default function FeatureScroll() {
   const features: Feature[] = [
     {

@@ -135,6 +135,14 @@ export default function FeatureScroll() {
     },
   ];
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   // const [featurePlayer, setFeaturePlayer] = useState<any>(null);
 
   // useEffect(() => {

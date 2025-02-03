@@ -214,7 +214,7 @@ export default function FeatureScroll() {
               <Player
                 autoplay
                 loop
-                src="/data/animations/scene1.json"
+                src="/data/animations/sc1.json"
                 style={{ height: "100%", width: "100%" }}
               ></Player>
             </div>
@@ -247,13 +247,14 @@ export default function FeatureScroll() {
             </div>
             {/* Right side - Image */}
             <div className="flex items-center justify-center">
-              {feature.image && (
-                <img
-                  src={feature.image}
-                  alt={feature.embodimentTitle}
-                  className="w-full h-auto"
-                />
-              )}
+              <div className="min-w-[520px] min-h-[520px] max-w-[520px] max-h-[520px] h-[520px] w-[520px] [&>*]:h-[100%]">
+                <Player
+                  autoplay
+                  loop
+                  src={`/data/animations/sc${index + 2}.json`}
+                  style={{ height: "100%", width: "100%" }}
+                ></Player>
+              </div>
             </div>
           </div>
         </section>
